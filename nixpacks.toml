@@ -1,2 +1,8 @@
 [phases.setup]
-nixPkgs = ['...', 'ffmpeg', 'python3']
+nixPkgs = ['nodePackages.npm', 'ffmpeg', 'python3Packages.yt-dlp']
+
+[phases.build]
+cmds = ['npm install']
+
+[start]
+cmd = 'node deploy-commands.js && node index.js'
