@@ -1,0 +1,6 @@
+cmdyi açıp
+ 
+winget install Gyan.FFmpeg
+
+winget install yt-dlp.yt-dlp
+
