@@ -14,9 +14,16 @@ const {
   StreamType,
 } = require("@discordjs/voice");
 
+const ytDlp = new YtDlpWrap("yt-dlp");
 const YtDlpWrapImport = require("yt-dlp-wrap");
 const YtDlpWrap = YtDlpWrapImport.default || YtDlpWrapImport;
-const ytDlp = new YtDlpWrap("yt-dlp");
+const fs = require('fs');
+
+// Eğer yt-dlp dosyası yoksa indir
+if (!fs.existsSync('./yt-dlp')) {
+    YtDlpWrap.downloadFromGithub('./yt-dlp').then(() => console.log('yt-dlp indirildi!'));
+}
+const ytDlp = new YtDlpWrap("./yt-dlp"); // Artık "yt-dlp" yerine "./yt-dlp" kullanıyoruz
 
 function clamp(n, lo, hi) {
   return Math.max(lo, Math.min(hi, n));
